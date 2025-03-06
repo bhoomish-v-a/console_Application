@@ -1,7 +1,30 @@
-
 import java.util.*;
-
-class TaxiBooking{
+class TaxiDetails{
+    int id;
+    String name;
+    boolean currentStatus;
+    String currentLocation;
+    double arrvingTime;
+    String arrivingLocation;
+                
+    TaxiDetails(int id,String name,String loc){
+        this.currentLocation=loc;
+        this.id=id;
+        this.name=name;
+        this.currentStatus=false;
+    }
+}
+class TaxiAllocation{
+    List<TaxiDetails> taxi = new ArrayList<>();
+  
+    Scanner s=new Scanner(System.in);
+    void addDetails(){
+        System.out.println("Enter car name\n Current Loaction of the taxi\n");
+        TaxiDetails td=new TaxiDetails(taxi.size()+1,s.nextLine(),s.nextLine());
+        taxi.add(td);
+    }
+}
+class TaxiBooking extends TaxiAllocation{
     private String uname;
     private String dispachLocation;
     private String distinationLocation;
@@ -38,8 +61,12 @@ class TaxiBooking{
         this.distinationLocation=s.nextLine();
         this.dispachTime=s.nextDouble();
     }
-    void bookTaxi(){}
-    void checkTaxi(){}
+    void bookTaxi(){
+        
+    }
+    void checkTaxi(){
+        
+    }
 
 
 }
@@ -48,11 +75,22 @@ class TaxiBooking{
 class Main{
     public static void main(String[] args) {
         Scanner s=new Scanner(System.in);
+        System.out.println("Enter 1 for customer login\n 2 for taxi owner login");
+        int x=s.nextInt();
         System.out.print("Enter the User name:");
-        String uname=s.nextLine();
+        String uname=s.next();
         System.out.print("Enter the Password:");
-        String password=s.nextLine(); 
-        TaxiBooking tb=new TaxiBooking(uname);       
-        while(tb.getAction()){}
+        String password=s.next(); 
+        TaxiBooking tb=new TaxiBooking(uname); 
+        if(x==1){
+                  
+            while(tb.getAction()){}
+        }
+        else{
+            TaxiAllocation ta=new TaxiAllocation();
+            ta.addDetails();
+            while(tb.getAction()){}
+        }
+       
     }
 }
